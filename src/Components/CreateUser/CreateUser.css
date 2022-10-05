@@ -1,0 +1,52 @@
+.user-container {
+    height: 80vh;
+    width: 100%;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+.user-input{
+    width: 250px;
+    height: 50px;
+    margin: 20px;
+    border: 1px solid rgb(45, 45, 159);
+    outline: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #182c58;
+    padding: 0 10px;
+    background-color: rgb(232, 239, 255);
+    caret-color: #182c58;
+}
+
+.user-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+    align-self: center;
+    margin-top: 40px;
+
+}
+
+.user-form div{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-form div label{
+    margin: 0 0 -10px 20px;
+}
+
+.create-btn{
+    width: 300px;
+    height: 40px;
+    align-self: center;
+    background-color: #182c58;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-top: 30px;
+    cursor: pointer;
+}

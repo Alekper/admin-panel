@@ -1,0 +1,177 @@
+.user-card {
+    padding: 20px 20px 20px 70px;
+    width: 60%;
+    height: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+}
+
+.user-card h1,
+.user-card h2 {
+    border-bottom: 1px solid rgb(146, 146, 146);
+    padding-bottom: 5px;
+    padding-left: 5px;
+    text-align: left;
+    width: 80%;
+}
+
+.user-list-main {
+    padding-top: 40px;
+
+    display: flex;
+    align-content: center !important;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.dot-div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    justify-content: space-between;
+    left: 5%;
+    top: 50%;
+    margin-top: -65px;
+
+}
+
+.dot {
+    background-color: rgb(232, 246, 255);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border-bottom: none !important;
+}
+
+.search-input {
+    height: 50px;
+    width: 400px;
+    border-radius: 7px;
+    padding-left: 10px;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
+    align-self: center;
+}
+
+.card-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    position: absolute;
+    right: 2%;
+    top: 10%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.delete-btn, 
+.edit-btn {
+    position: absolute;
+    right: 2%;
+    top: 40%;
+    background: transparent;
+    border: none;
+    outline: none;
+    height: 100px;
+    width: 100px;
+
+}
+
+.edit-btn{
+    top: 65%
+}
+
+.delete-icon {
+    height: 30px !important;
+    width: 30px !important;
+    cursor: pointer;
+}
+
+.icon {
+    margin-right: 20px;
+    font-size: 1rem;
+}
+
+.fa-trash,
+.fa-pen-to-square {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.update {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px;
+    align-items: center;
+    border: 1px solid rgb(45, 45, 159);
+    
+}
+
+.update input {
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 10px;
+    outline: none;
+    margin: 10px;
+    border: 2px solid rgb(45, 45, 159);
+
+}
+
+.update h1{
+    color: rgb(45, 45, 159);
+
+}
+
+.update input::placeholder{
+    color: rgb(45, 45, 159);
+}
+
+.update-btn {
+    height: 50px;
+    width: 100px;
+    background-color: rgb(45, 45, 159);
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.close-btn{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    font-size: 1rem;
+    cursor: pointer;
+    padding-bottom: 2px;
+}
+
+.close-btn:hover{
+    border: 1px solid rgb(45, 45, 159);
+    border-radius: 5px;
+}
+
+.icons-div{
+    display: flex;
+    flex-direction: column;
+}

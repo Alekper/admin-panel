@@ -1,0 +1,314 @@
+.home-logo {
+    position: absolute;
+    height: 60px;
+    width: 90px;
+    left: 50%;
+    transform: translateX(-108%);
+    align-self: center;
+}
+
+.home-navbar {
+    height: 10vh;
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+#home-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(232, 246, 255);
+
+}
+
+.main-container {
+    height: 90vh;
+    min-width: 80%;
+    display: flex;
+    margin-left: -5px;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.admin-profile {
+    width: 100% !important;
+}
+
+.menu-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 50px;
+    cursor: pointer;
+    padding: 30px 48.5px 30px 0;
+}
+
+
+.menu-icon:hover {
+    border-right: 3px solid rgb(52, 52, 255);
+}
+
+.home-menu {
+    display: flex;
+    flex-direction: column;
+    height: 78vh;
+    justify-content: space-between;
+    margin-top: 50px;
+    border-right: 2px solid rgba(143, 186, 255, 0.27) !important;
+    width: 15%;
+    margin-left: -50px;
+    /* margin-top: 10px; */
+}
+
+.sidebar-element {
+    height: 100vh;
+    width: 20%;
+    background-color: rgb(45, 45, 159);
+    position: absolute;
+    right: 0;
+
+}
+
+.sidebar {
+    height: 100vh;
+    width: 20%;
+    background-color: rgb(45, 45, 159);
+    position: absolute;
+    right: 0;
+
+}
+
+.date {
+    text-align: left;
+    color: #fff;
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 40px;
+    /* margin-bottom: 10px; */
+}
+
+.weekday {
+    margin-top: 0px;
+    margin-bottom: -5px;
+    font-size: 2rem;
+}
+
+.today {
+    font-size: 1rem;
+    margin-top: px;
+}
+
+.side-container {
+    display: flex;
+    flex-direction: column !important;
+}
+
+#line {
+    height: 10vh;
+    border-bottom: 1.5px solid rgb(62, 154, 245);
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #f86262 !important;
+}
+
+.react-calendar {
+    width: 250px !important;
+    max-width: 100%;
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    margin-top: 40px;
+}
+
+.react-calendar button {
+    color: white;
+}
+
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus,
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus,
+.react-calendar__tile--now {
+    background: #76a1ff !important;
+}
+
+.widgets {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.main-info {
+    display: flex;
+    margin: 80px 0 0 120px;
+
+}
+
+.fullname {
+    color: #182c58;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: capitalize;
+    margin: 40px 0 0 50px;
+    width: 100%;
+}
+
+.info-div {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    border-bottom: 1px solid grey;
+}
+
+.info {
+    width: 69%;
+    background-color: #fff;
+    padding: 30px 80px 30px 120px;
+    border-radius: 30px;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    margin: 20px 0 0 55px;
+    position: relative;
+}
+
+.dot-div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: space-between;
+    left: 5%;
+    top: 50%;
+    margin-top: -75px;
+
+}
+
+.dot {
+    background-color: rgb(232, 246, 255);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.watch-face {
+    width: 195px;
+    height: 196px;
+    position: absolute;
+    z-index: 999;
+    top: 17.1%;
+
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+#admin-pp {
+    display: none;
+}
+
+.profile {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative !important;
+    cursor: pointer;
+    pointer-events: inherit;
+
+
+}
+
+#pp-label {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.374);
+    border-radius: 50%;
+    position: absolute !important;
+    font-weight: 700;
+    color: rgb(228, 228, 228);
+    display: none;
+    z-index: 999;
+    pointer-events: inherit;
+    top: 17%;
+    left: 41%;
+
+
+    /* top: 0; */
+
+}
+
+#pp-label span {
+    padding-top: 90px;
+}
+
+.profile:hover+#pp-label {
+    display: flex;
+
+}
+
+#pp-label:hover{
+display: flex;
+}
+
+.navbar-pp {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.navbar-profile {
+    display: flex;
+    flex-direction: row;
+    width: 20%;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.name-btn {
+    color: #182c58;
+    font-size: 1.5rem;
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    outline: none;
+    width: 80%;
+    cursor: pointer;
+
+
+}
+
+.name-btn:hover {
+    text-decoration: underline;
+}
+
+
+
+.img-btn {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    background-color: transparent;
+cursor: pointer;
+
+}
+
+
+.home-menu button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
