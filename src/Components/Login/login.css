@@ -37,8 +37,8 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
-    background: rgb(10, 125, 253);
-    background: linear-gradient(0deg, rgba(10, 125, 253, 1) 19%, rgba(0, 203, 255, 1) 42%, rgba(135, 226, 255, 1) 69%, rgba(255, 255, 255, 1) 100%);
+    background: rgb(0, 74, 159);
+    background: linear-gradient(0deg, rgb(0, 79, 170) 19%, rgb(3, 128, 159) 42%, rgb(35, 200, 255) 69%, rgba(255, 255, 255, 1) 100%);
 }
 
 .login-label {

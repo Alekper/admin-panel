@@ -44,7 +44,7 @@ export default function Home() {
                     <button  onClick={()=>{navigate('/home/list')}}>
                         <img className='menu-icon' src={userListIcon} alt="List of users" />
                     </button>
-                    <button>
+                    <button onClick={() => navigate('/home/upload-report')}>
                         <img className='menu-icon' src={uploadDocumentIcon} alt="Upload a document" />
                     </button>
                     <button>

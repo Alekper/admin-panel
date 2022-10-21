@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import CreateUser from './Components/CreateUser/CreateUser';
 import AdminProfile from './Components/AdminProfile/AdminProfile';
 import UserList from './Components/UserList/UserList';
+import UploadReports from './Components/UploadReports/UploadReports';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="profile" element={<AdminProfile />} />
           <Route path="new" element={<CreateUser />} />
           <Route path="list" element={<UserList />} />
+          <Route path="upload-report" element={<UploadReports />} />
 
         </Route>
         <Route path="/" element={<Login />} />

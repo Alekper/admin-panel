@@ -12,7 +12,7 @@ export default function UserList() {
         [newMail, setNewMail] = useState(''),
         [newPhone, setNewPhone] = useState(''),
         [newPass, setNewPass] = useState(''),
-        [userId, setUserId]=useState()
+        [userId, setUserId] = useState()
 
 
 
@@ -34,12 +34,13 @@ export default function UserList() {
     // }, [])
 
     const getUsers = () => {
-        fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users")
+        // fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users")
+        fetch("http://sofi03.azal.az:8083/api/user/getusers")
             .then((result) => {
                 result.json()
                     .then((resp) => {
                         setUserArray(resp)
-                        console.log(resp);
+                        // console.log(resp);
                     })
 
             })
@@ -56,7 +57,7 @@ export default function UserList() {
 
     const filter = (e) => {
         const keyword = e.target.value;
-        console.log(keyword);
+        // console.log(keyword);
 
         if (keyword !== '') {
             const results = userArray.filter((user) => {
@@ -73,9 +74,10 @@ export default function UserList() {
 
     const deleteHandler = (e) => {
         if (window.confirm('Confirm user removal!')) {
-            // fetch(`http://sofi03.azal.az:8083/api/user/deleteuser/${e}`, { method: 'DELETE' })
-            fetch(`https://633c9f5174afaef1640c2bad.mockapi.io/users/${e}`, { method: 'DELETE' })
-                .then(() => {
+            fetch(`http://sofi03.azal.az:8083/api/user/deleteuser/${e}`, { method: 'DELETE' })
+                // fetch(`http://sofi03.azal.az:8083/api/user/getusers${e}`, { method: 'DELETE' })
+                .then((resp) => {
+                    // console.log(resp);
                     alert('Delete successful')
                     getUsers()
                 })
@@ -92,17 +94,20 @@ export default function UserList() {
 
     const updateHandler = (e) => {
         setUserId(e)
+
         let updateData = {
             name: newName,
             surname: newSurname,
             email: newMail,
-            phone: newPhone,
-            password: newPass
+            telefon: newPhone,
+            password: newPass,
+            tabel: userId,
+            foto: 'aaa'
         }
         setShowUpdateForm(!showUpdateForm)
-        console.log(e);
+        // console.log(updateData);
 
-        fetch(`https://633c9f5174afaef1640c2bad.mockapi.io/users/${userId}`, {
+        fetch(`http://sofi03.azal.az:8083/api/user/UpdateUser`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -115,7 +120,37 @@ export default function UserList() {
         })
 
     }
+    const autoFill = (e) => {
+        console.log(userId);
+        fetch("http://sofi03.azal.az:8083/api/user/getusers")
+            .then((result) => {
+                result.json()
+                    .then((resp) => {
+                        console.log(resp);
+                        resp.map(item => {
+                            if (item.tabel === +userId) {
+                                setNewName(item.name)
+                                setNewSurname(item.surname)
+                                setNewMail(item.email)
+                                setNewPhone(item.telefon)
+                                setNewPass(item.password)
+                            }
+                        })
+                    })
 
+            })
+            .catch(error => {
+                console.log(error.message);
+            })
+    }
+
+    const clearState = () => {
+        setNewName('')
+        setNewSurname('')
+        setNewMail('')
+        setNewPhone('')
+        setNewPass('')
+    }
 
 
     return (
@@ -137,11 +172,11 @@ export default function UserList() {
 
                             <div className="user-card" key={i}>
                                 <div className='icons-div'>
-                                    <button className='delete-btn' onClick={() => deleteHandler(item.id)}>
+                                    <button className='delete-btn' onClick={() => deleteHandler(item.tabel)}>
                                         <i className="fa-solid fa-trash"></i>
 
                                     </button>
-                                    <button className='edit-btn' onClick={() => updateHandler(item.id)}>
+                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setShowUpdateForm(!showUpdateForm) }}>
                                         <i className="fa-solid fa-pen-to-square"></i>
 
                                     </button>
@@ -156,7 +191,7 @@ export default function UserList() {
                                 <h1 ><i className="fa-solid icon fa-user"></i>{item.name + ' ' + item.surname}</h1>
                                 <h2 ><i className="fa-solid icon fa-id-card"></i>{item.tabel}</h2>
                                 <h2 ><i className="fa-solid icon fa-envelope"></i>{item.email}</h2>
-                                <h2 ><i className="fa-solid icon fa-phone"></i>{item.phone}</h2>
+                                <h2 ><i className="fa-solid icon fa-phone"></i>{item.telefon}</h2>
                                 <h2 ><i className="fa-solid icon fa-key"></i>{item.password}</h2>
                             </div>
                         )
@@ -164,11 +199,11 @@ export default function UserList() {
                         return (
                             <div className="user-card" key={i}>
                                 <div className='icons-div'>
-                                    <button className='delete-btn' onClick={() => deleteHandler(item.id)}>
+                                    <button className='delete-btn' onClick={() => deleteHandler(item.tabel)}>
                                         <i className="fa-solid fa-trash"></i>
 
                                     </button>
-                                    <button className='edit-btn' onClick={() => updateHandler(item.id)}>
+                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setShowUpdateForm(!showUpdateForm) }}>
                                         <i className="fa-solid fa-pen-to-square"></i>
 
                                     </button>
@@ -182,7 +217,7 @@ export default function UserList() {
                                 <h1 ><i className="fa-solid icon fa-user"></i>{item.name + ' ' + item.surname}</h1>
                                 <h2 ><i className="fa-solid icon fa-id-card"></i>{item.tabel}</h2>
                                 <h2 ><i className="fa-solid icon fa-envelope"></i>{item.email}</h2>
-                                <h2 ><i className="fa-solid icon fa-phone"></i>{item.phone}</h2>
+                                <h2 ><i className="fa-solid icon fa-phone"></i>{item.telefon}</h2>
                                 <h2 ><i className="fa-solid icon fa-key"></i>{item.password}</h2>
                             </div>
                         )
@@ -192,13 +227,16 @@ export default function UserList() {
                 showUpdateForm ?
                     <div className="update">
                         <h1>Edit someone</h1>
-                        <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Name...' />
-                        <input type="text" value={newSurname} onChange={(e) => setNewSurname(e.target.value)} placeholder='Surname...' />
-                        <input type="text" value={newMail} onChange={(e) => setNewMail(e.target.value)} placeholder='E-mail...' />
-                        <input type="text" value={newPhone} onChange={(e) => setNewPhone(e.target.value)} placeholder='Phone number...' />
-                        <input type="text" value={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder='Password...' />
+                        <input type="text" defaultValue={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Name...' />
+                        <input type="text" defaultValue={newSurname} onChange={(e) => setNewSurname(e.target.value)} placeholder='Surname...' />
+                        <input type="text" defaultValue={newMail} onChange={(e) => setNewMail(e.target.value)} placeholder='E-mail...' />
+                        <input type="text" defaultValue={newPhone} onChange={(e) => setNewPhone(e.target.value)} placeholder='Phone number...' />
+                        <input type="text" defaultValue={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder='Password...' />
                         <button className='update-btn' onClick={updateHandler}>Update</button>
-                        <button className='close-btn' onClick={() => setShowUpdateForm(!showUpdateForm)}>&#10006;</button>
+                        <button className='close-btn' onClick={() => { setShowUpdateForm(!showUpdateForm); clearState() }}>&#10006;</button>
+                        <button className='fill-btn' onClick={() => autoFill()}>Fill</button>
+                        {/* <button className='fill-btn'>Fill</button> */}
+
                     </div> :
                     null
             }

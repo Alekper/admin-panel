@@ -4,19 +4,23 @@ import profilePicture from '../../Assets/img/pp.png'
 
 export default function CreateUser() {
     const
-        [name, setName] = useState(),
-        [surname, setSurname] = useState(),
-        [email, setEmail] = useState(),
-        [phone, setPhone] = useState(),
-        [tabel, setTabel] = useState(),
-        [password, setPassword] = useState()
+        [Name, setName] = useState(),
+        [Surname, setSurname] = useState(),
+        [Email, setEmail] = useState(),
+        [Telefon, setPhone] = useState(),
+        [Tabel, setTabel] = useState(),
+        [Password, setPassword] = useState(),
+        [Foto, setFoto] = useState('asd')
 
     const createUser = () => {
-        let userData = { name, surname, email, phone, tabel, password }
-        fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users", {
+        // let userData = {  name, surname, email, telefon, tabel, password }
+        let userData = { Tabel, Name, Surname, Email, Telefon, Foto, Password }
+        console.log(userData);
+        // fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users", {
+        fetch("http://sofi03.azal.az:8083/api/user/createuser", {
             method: "POST",
             headers: {
-                'Accept': 'application/json',
+                'Accept': '',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(userData)
@@ -24,6 +28,9 @@ export default function CreateUser() {
             resp.json().then((result) => {
                 alert('User created successfully!')
                 window.location.reload()
+                console.log(result);
+            }).catch(error => {
+                console.log(error);
             })
         })
     }

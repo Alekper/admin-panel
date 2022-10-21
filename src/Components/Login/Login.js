@@ -11,7 +11,7 @@ export default function Login() {
     const [adminName, setAdminName] = useState('')
     const [adminPass, setAdminPass] = useState('')
     const adminData = {
-        dmin_id: adminName,
+        admin_id: adminName,
         password: adminPass
     }
     const signIn = () => {
@@ -25,7 +25,8 @@ export default function Login() {
             body: JSON.stringify(adminData)
         }).then((resp) => {
             resp.json().then((result) => {
-                console.log(result);
+                result === 'AccessGranted' ? navigate('/home/profile') : console.log(result)
+                
             })
         })
     }
