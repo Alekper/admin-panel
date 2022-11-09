@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import profilePicture from '../../Assets/img/pp.png'
 
 
 
 export default function AdminProfile() {
     // const [photoSource, setPhotoSource] = useState()
-    const [user, setUser] = useState('Admin Adminovich')
+    const user = useMemo(() => localStorage.getItem('fullname'), [])
     return (
         <section className='main-container'>
 
 
             <div className="admin-profile">
                 <div className='main-info'>
-                    <img src={profilePicture} alt="Profile" className='profile' />
+                    <img src={profilePicture} alt="Profile" className='home-profile' />
                     
                     <label htmlFor="admin-pp" id="pp-label">
                     <span>Change profile photo</span>
@@ -33,6 +33,7 @@ export default function AdminProfile() {
                     </div>
 
                 </div>
+                
             </div>
         </section>
     )

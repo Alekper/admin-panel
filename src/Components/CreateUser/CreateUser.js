@@ -1,6 +1,7 @@
 import './CreateUser.css'
 import React, { useState } from "react";
 import profilePicture from '../../Assets/img/pp.png'
+import axios from 'axios';
 
 export default function CreateUser() {
     const
@@ -10,13 +11,44 @@ export default function CreateUser() {
         [Telefon, setPhone] = useState(),
         [Tabel, setTabel] = useState(),
         [Password, setPassword] = useState(),
-        [Foto, setFoto] = useState('asd')
+        [Foto, setFoto] = useState([])
+
+    const setProfilePicture = (e) => {
+        const len = e.target.files.length;
+        for (let i = 0; i < len; i++) {
+
+            if (e.target.files) {
+                setFoto(e.target.files[0])
+                console.log(Foto)
+            } else {
+                console.log('error');
+            }
+        }
+
+    }
+
+    const handlePhoto = async () => {
+        // event.preventDefault()
+        const formData = new FormData();
+        formData.append("selectedFile", Foto);
+        try {
+            const response = await axios({
+                method: "post",
+                url: `http://sofi03.azal.az:8083/api/user/uploadimage/${Tabel}`,
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const createUser = () => {
-        // let userData = {  name, surname, email, telefon, tabel, password }
-        let userData = { Tabel, Name, Surname, Email, Telefon, Foto, Password }
+        let userData = { Tabel, Name, Surname, Foto, Email, Telefon, Password }
         console.log(userData);
-        // fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users", {
+
+handlePhoto()
+
         fetch("http://sofi03.azal.az:8083/api/user/createuser", {
             method: "POST",
             headers: {
@@ -34,14 +66,22 @@ export default function CreateUser() {
             })
         })
     }
+
+
+
+
     return (
         <div className="user-container">
             <div>
-                <img src={profilePicture} alt="Profile" className='profile' />
-                <label htmlFor="admin-pp" id="pp-label">
-                    <span>Change profile photo</span>
-                </label>
-                <input type="file" id="admin-pp" />
+                    <div className="profile">
+                        <img src={profilePicture} alt="Profile" className='profile-pic' />
+
+                        <label htmlFor="admin-pp" id="pp-label">
+                            <span>Change profile photo</span>
+                        </label>
+                        <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
+                        <button type="submit">submit</button>
+                    </div>
             </div>
             <div className='user-form'>
                 <div>

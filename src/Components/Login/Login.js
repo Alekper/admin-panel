@@ -1,21 +1,25 @@
 import './login.css'
 import React from "react";
 import logo from '../../Assets/img/AZAL.png'
+import loader from '../../Assets/img/loading.gif'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
-
 
 export default function Login() {
 
     const navigate = useNavigate()
+    const [loaderStatus, setLoaderStatus] = useState(false)
     const [adminName, setAdminName] = useState('')
     const [adminPass, setAdminPass] = useState('')
     const adminData = {
         admin_id: adminName,
         password: adminPass
     }
+
+    // admin1
+    // 123123z
     const signIn = () => {
-        // navigate('/home/profile')
+
         fetch("http://sofi03.azal.az:8083/api/user/admlogin", {
             method: "POST",
             headers: {
@@ -24,9 +28,19 @@ export default function Login() {
             },
             body: JSON.stringify(adminData)
         }).then((resp) => {
+            while (!resp) {
+                console.log('a');
+            }
             resp.json().then((result) => {
-                result === 'AccessGranted' ? navigate('/home/profile') : console.log(result)
-                
+                setLoaderStatus(true)
+                if (result.admin_id === adminName) {
+                    localStorage.setItem('username', result.admin_id)
+                    localStorage.setItem('fullname', `${result.name} ${result.surname}`)
+                    navigate('/home/profile')
+                } else {
+                    alert('Incorrect login or password!')
+                }
+
             })
         })
     }
@@ -34,6 +48,9 @@ export default function Login() {
 
     return (
         <div id="login-container">
+            <div className="loader-container" style={{ display: !loaderStatus ? 'none' : 'flex' }}>
+                <img src={loader} id='loader' alt='loader' />
+            </div>
             <img src={logo} id='logo' alt='logo' />
             <label htmlFor='login-username' className="login-label">Username</label>
             <input type='text' className="login-input" onChange={(e) => { setAdminName(e.target.value) }} id="login-username" />

@@ -1,9 +1,13 @@
 import React from "react";
-import clockFace from '../../Assets/icons/clock.png'
+// import clockFace from '../../Assets/icons/clock.png'
 import Calendar from 'react-calendar'
 import AnalogClock from 'analog-clock-react';
+import { useNavigate } from 'react-router-dom'
 
-export default function Sidebar(){
+
+export default function Sidebar() {
+    const navigate = useNavigate()
+
     const getDay = (dateStr, locale) => {
         let date = new Date(dateStr)
         return date.toLocaleDateString(locale, { weekday: 'long' })
@@ -28,23 +32,30 @@ export default function Sidebar(){
         }
     }
 
-    return(
+    const logOut = () =>{
+        localStorage.clear()
+        navigate('/login')
+
+    }
+
+    return (
         <div className="sidebar">
-        <div id='line'>
-            <div className="date">
-                <p className='weekday'>{weekday}</p>
-                <p className='today'>{today}</p>
+            <div id='line'>
+                <div className="date">
+                    <p className='weekday'>{weekday}</p>
+                    <p className='today'>{today}</p>
+                </div>
+            </div>
+            <div className="side-container">
+
+                <div className="widgets">
+                    {/* <img src={clockFace} alt="Clock face" className="watch-face" /> */}
+                    <AnalogClock {...options} />
+
+                    <Calendar />
+                </div>
+                <button id="logout" onClick={logOut}>Log out</button>
             </div>
         </div>
-        <div className="side-container">
-
-            <div className="widgets">
-                <img src={clockFace} alt="Clock face" className="watch-face" /> 
-                <AnalogClock {...options} />
-
-                <Calendar />
-            </div>
-        </div>
-    </div>
     )
 }

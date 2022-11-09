@@ -1,6 +1,9 @@
 import './UserList.css'
 import React, { useState } from "react"
 import { useEffect } from "react"
+// import { isContentEditable } from '@testing-library/user-event/dist/utils'
+import axios from 'axios'
+
 
 export default function UserList() {
     const [userArray, setUserArray] = useState([]),
@@ -12,35 +15,47 @@ export default function UserList() {
         [newMail, setNewMail] = useState(''),
         [newPhone, setNewPhone] = useState(''),
         [newPass, setNewPass] = useState(''),
-        [userId, setUserId] = useState()
+        [userId, setUserId] = useState(),
+        [photo, setPhoto] = useState(),
+        [editHeader, setEditHeader] = useState('')
+    const regex = /(files)\\\w+[a-zA-Z.\\]*/g,
+        [Foto, setFoto] = useState([])
 
+    const setProfilePicture = (e) => {
+        const len = e.target.files.length;
+        for (let i = 0; i < len; i++) {
 
+            if (e.target.files) {
+                setFoto(e.target.files[0])
+                console.log(Foto)
+            } else {
+                alert('error');
+            }
+        }
 
+    }
 
-    // useEffect(() => {
-
-    //     fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users")
-    //         .then((result) => {
-    //             result.json()
-    //                 .then((resp) => {
-    //                     setUserArray(resp)
-    //                     console.log(resp);
-    //                 })
-
-    //         })
-    //         .catch(error => {
-    //             console.log(error.message);
-    //         })
-    // }, [])
+    const handlePhoto = async () => {
+        const formData = new FormData();
+        formData.append("selectedFile", Foto);
+        try {
+            const response = await axios({
+                method: "post",
+                url: `http://sofi03.azal.az:8083/api/user/uploadimage/${userId}`,
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const getUsers = () => {
-        // fetch("https://633c9f5174afaef1640c2bad.mockapi.io/users")
         fetch("http://sofi03.azal.az:8083/api/user/getusers")
             .then((result) => {
                 result.json()
                     .then((resp) => {
                         setUserArray(resp)
-                        // console.log(resp);
                     })
 
             })
@@ -75,9 +90,7 @@ export default function UserList() {
     const deleteHandler = (e) => {
         if (window.confirm('Confirm user removal!')) {
             fetch(`http://sofi03.azal.az:8083/api/user/deleteuser/${e}`, { method: 'DELETE' })
-                // fetch(`http://sofi03.azal.az:8083/api/user/getusers${e}`, { method: 'DELETE' })
-                .then((resp) => {
-                    // console.log(resp);
+                .then(() => {
                     alert('Delete successful')
                     getUsers()
                 })
@@ -93,8 +106,8 @@ export default function UserList() {
 
 
     const updateHandler = (e) => {
+        handlePhoto()
         setUserId(e)
-
         let updateData = {
             name: newName,
             surname: newSurname,
@@ -102,10 +115,9 @@ export default function UserList() {
             telefon: newPhone,
             password: newPass,
             tabel: userId,
-            foto: 'aaa'
+            foto: photo
         }
         setShowUpdateForm(!showUpdateForm)
-        // console.log(updateData);
 
         fetch(`http://sofi03.azal.az:8083/api/user/UpdateUser`, {
             method: 'PUT',
@@ -120,21 +132,23 @@ export default function UserList() {
         })
 
     }
-    const autoFill = (e) => {
+    const autoFill = () => {
+
         console.log(userId);
         fetch("http://sofi03.azal.az:8083/api/user/getusers")
             .then((result) => {
                 result.json()
                     .then((resp) => {
-                        console.log(resp);
                         resp.map(item => {
-                            if (item.tabel === +userId) {
+                            if (item.tabel === userId) {
                                 setNewName(item.name)
                                 setNewSurname(item.surname)
                                 setNewMail(item.email)
                                 setNewPhone(item.telefon)
                                 setNewPass(item.password)
+                                setPhoto(`http://sofi03.azal.az:8083/${item.foto.match(regex)}`)
                             }
+                            return 1
                         })
                     })
 
@@ -143,6 +157,7 @@ export default function UserList() {
                 console.log(error.message);
             })
     }
+
 
     const clearState = () => {
         setNewName('')
@@ -176,12 +191,12 @@ export default function UserList() {
                                         <i className="fa-solid fa-trash"></i>
 
                                     </button>
-                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setShowUpdateForm(!showUpdateForm) }}>
+                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setEditHeader(item.name + ' ' + item.surname); setShowUpdateForm(!showUpdateForm) }}>
                                         <i className="fa-solid fa-pen-to-square"></i>
 
                                     </button>
                                 </div>
-                                <img src={item.image} className="profile-picture" alt='profile' />
+                                <img src={`http://sofi03.azal.az:8083/${item.foto.match(regex)}`} className="profile-picture" alt='profile' />
                                 <span className='dot'></span>
                                 <span className='dot'></span>
                                 <div className='dot-div'>
@@ -203,12 +218,12 @@ export default function UserList() {
                                         <i className="fa-solid fa-trash"></i>
 
                                     </button>
-                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setShowUpdateForm(!showUpdateForm) }}>
+                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setEditHeader(item.name + ' ' + item.surname); setShowUpdateForm(!showUpdateForm) }}>
                                         <i className="fa-solid fa-pen-to-square"></i>
 
                                     </button>
                                 </div>
-                                <img src={item.image} className='profile-picture' alt="profile" />
+                                <img src={`http://sofi03.azal.az:8083/${item.foto.match(regex)}`} className='profile-picture' alt="profile" />
 
                                 <div className='dot-div'>
                                     <span className='dot'></span>
@@ -226,16 +241,19 @@ export default function UserList() {
             {
                 showUpdateForm ?
                     <div className="update">
-                        <h1>Edit someone</h1>
-                        <input type="text" defaultValue={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Name...' />
-                        <input type="text" defaultValue={newSurname} onChange={(e) => setNewSurname(e.target.value)} placeholder='Surname...' />
-                        <input type="text" defaultValue={newMail} onChange={(e) => setNewMail(e.target.value)} placeholder='E-mail...' />
-                        <input type="text" defaultValue={newPhone} onChange={(e) => setNewPhone(e.target.value)} placeholder='Phone number...' />
-                        <input type="text" defaultValue={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder='Password...' />
+                        <h1>Edit {editHeader}</h1>
+                        <input type="text" className='update-input' defaultValue={newName} onChange={(e) => setNewName(e.target.value)} placeholder='Name...' />
+                        <input type="text" className='update-input' defaultValue={newSurname} onChange={(e) => setNewSurname(e.target.value)} placeholder='Surname...' />
+                        <input type="text" className='update-input' defaultValue={newMail} onChange={(e) => setNewMail(e.target.value)} placeholder='E-mail...' />
+                        <input type="text" className='update-input' defaultValue={newPhone} onChange={(e) => setNewPhone(e.target.value)} placeholder='Phone number...' />
+                        <input type="text" className='update-input' defaultValue={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder='Password...' />
+                                <label htmlFor="admin-pp" id="up-pp-label">
+                                    Change profile photo
+                                </label>
+                                <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
                         <button className='update-btn' onClick={updateHandler}>Update</button>
                         <button className='close-btn' onClick={() => { setShowUpdateForm(!showUpdateForm); clearState() }}>&#10006;</button>
                         <button className='fill-btn' onClick={() => autoFill()}>Fill</button>
-                        {/* <button className='fill-btn'>Fill</button> */}
 
                     </div> :
                     null

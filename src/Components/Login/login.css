@@ -26,7 +26,7 @@
 
 }
 
-.login-btn:active{
+.login-btn:active {
     border: none;
 }
 
@@ -50,8 +50,36 @@
 }
 
 #logo {
-    margin-top: -90px;
+    margin-top: -50px;
     margin-bottom: 50px;
     width: 300px;
     height: 200px;
+}
+
+
+
+.loader-container {
+    display: flex;
+    border-radius: 10px;
+    position: absolute;
+    height: 200px;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -11px -1px 63px 9px rgba(35, 75, 179, 1);
+    -webkit-box-shadow: -11px -1px 63px 9px rgba(35, 75, 179, 1);
+    -moz-box-shadow: -11px -1px 63px 9px rgba(35, 75, 179, 1);
+}
+
+@media screen and (min-width: 280px) and (max-width: 320px) {
+    #logo {
+
+        width: 230px;
+        height: 150px;
+    }
+
+    .login-input {
+        width: 270px;
+    }
+
 }

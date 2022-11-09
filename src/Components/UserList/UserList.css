@@ -8,6 +8,10 @@
     position: relative;
 }
 
+button{
+    cursor: pointer;
+}
+
 .user-card h1,
 .user-card h2 {
     border-bottom: 1px solid rgb(146, 146, 146);
@@ -75,7 +79,7 @@
     border-radius: 50%;
 }
 
-.delete-btn, 
+.delete-btn,
 .edit-btn {
     position: absolute;
     right: 2%;
@@ -88,7 +92,7 @@
 
 }
 
-.edit-btn{
+.edit-btn {
     top: 65%
 }
 
@@ -110,22 +114,23 @@
 }
 
 .update {
-    position: absolute;
+    position: fixed;
     width: 700px;
-    height: 500px;
+    height: 600px;
     background-color: #fff;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     border-radius: 20px;
     padding: 20px;
     align-items: center;
     border: 1px solid rgb(45, 45, 159);
-    
+
 }
 
-.update input {
+.update-input {
     width: 50%;
     height: 50px;
     border-radius: 10px;
@@ -136,12 +141,12 @@
 
 }
 
-.update h1{
+.update h1 {
     color: rgb(45, 45, 159);
 
 }
 
-.update input::placeholder{
+.update-input::placeholder {
     color: rgb(45, 45, 159);
 }
 
@@ -155,7 +160,8 @@
     font-weight: bold;
     letter-spacing: 2px;
 }
-.close-btn{
+
+.close-btn {
     background-color: transparent;
     border: none;
     position: absolute;
@@ -165,25 +171,36 @@
     cursor: pointer;
     padding-bottom: 2px;
     color: rgb(45, 45, 159);
-    
+
 }
 
 
 
-.icons-div{
+.icons-div {
     display: flex;
     flex-direction: column;
 }
 
-.fill-btn{
+.fill-btn {
     color: rgb(45, 45, 159);
-background: transparent;
-border: none;
-font-weight: 700;
-font-size: 1rem;
-letter-spacing: 3px;
-cursor: pointer;
-position: absolute;
-right: 4%;
-top: 15%;
+    background: transparent;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    position: absolute;
+    right: 4%;
+    top: 15%;
+}
+
+#up-pp-label {
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 1px solid rgb(45, 45, 159);
+    margin: 20px;
+    border-radius: 10px;
+    color: rgb(45, 45, 159);
+
+
 }
