@@ -11,15 +11,16 @@ export default function CreateUser() {
         [Telefon, setPhone] = useState(),
         [Tabel, setTabel] = useState(),
         [Password, setPassword] = useState(),
-        [Foto, setFoto] = useState([])
+        [Foto, setFoto] = useState('a'),
+        [Photo, setPhoto] = useState([])
 
     const setProfilePicture = (e) => {
         const len = e.target.files.length;
         for (let i = 0; i < len; i++) {
 
             if (e.target.files) {
-                setFoto(e.target.files[0])
-                console.log(Foto)
+                setPhoto(e.target.files[0])
+                console.log(Photo)
             } else {
                 console.log('error');
             }
@@ -29,8 +30,9 @@ export default function CreateUser() {
 
     const handlePhoto = async () => {
         // event.preventDefault()
+        console.log('lets go');
         const formData = new FormData();
-        formData.append("selectedFile", Foto);
+        formData.append("selectedFile", Photo);
         try {
             const response = await axios({
                 method: "post",
@@ -47,7 +49,7 @@ export default function CreateUser() {
         let userData = { Tabel, Name, Surname, Foto, Email, Telefon, Password }
         console.log(userData);
 
-handlePhoto()
+        // handlePhoto()
 
         fetch("http://sofi03.azal.az:8083/api/user/createuser", {
             method: "POST",
@@ -64,7 +66,16 @@ handlePhoto()
             }).catch(error => {
                 console.log(error);
             })
+
+
         })
+
+
+        setTimeout(() => {
+            console.log(Tabel);
+            handlePhoto()
+          
+        }, 1000);
     }
 
 
@@ -73,15 +84,14 @@ handlePhoto()
     return (
         <div className="user-container">
             <div>
-                    <div className="profile">
-                        <img src={profilePicture} alt="Profile" className='profile-pic' />
+                <div className="profile">
+                    <img src={profilePicture} alt="Profile" className='profile-pic' />
 
-                        <label htmlFor="admin-pp" id="pp-label">
-                            <span>Change profile photo</span>
-                        </label>
-                        <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
-                        <button type="submit">submit</button>
-                    </div>
+                    <label htmlFor="admin-pp" id="pp-label">
+                        <span>Change profile photo</span>
+                    </label>
+                    <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
+                </div>
             </div>
             <div className='user-form'>
                 <div>
@@ -110,7 +120,7 @@ handlePhoto()
                     <input type="text" className='user-input' onChange={(e) => setPassword(e.target.value)} name="Password" id="password" />
                 </div>
             </div>
-            <button className='create-btn' onClick={createUser}>Create</button>
+            <button className='create-btn' type='submit' onClick={createUser}>Create</button>
         </div>
     )
 }

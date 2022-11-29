@@ -22,6 +22,7 @@ export default function UserList() {
         [Foto, setFoto] = useState([])
 
     const setProfilePicture = (e) => {
+        console.log('kkk');
         const len = e.target.files.length;
         for (let i = 0; i < len; i++) {
 
@@ -247,10 +248,10 @@ export default function UserList() {
                         <input type="text" className='update-input' defaultValue={newMail} onChange={(e) => setNewMail(e.target.value)} placeholder='E-mail...' />
                         <input type="text" className='update-input' defaultValue={newPhone} onChange={(e) => setNewPhone(e.target.value)} placeholder='Phone number...' />
                         <input type="text" className='update-input' defaultValue={newPass} onChange={(e) => setNewPass(e.target.value)} placeholder='Password...' />
-                                <label htmlFor="admin-pp" id="up-pp-label">
-                                    Change profile photo
-                                </label>
-                                <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
+                        <label htmlFor="admin-pp" id="up-pp-label">
+                            Change profile photo
+                        </label>
+                        <input type="file" id="admin-pp" onChange={(e) => setProfilePicture(e)} />
                         <button className='update-btn' onClick={updateHandler}>Update</button>
                         <button className='close-btn' onClick={() => { setShowUpdateForm(!showUpdateForm); clearState() }}>&#10006;</button>
                         <button className='fill-btn' onClick={() => autoFill()}>Fill</button>
