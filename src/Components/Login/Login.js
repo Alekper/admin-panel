@@ -19,6 +19,7 @@ export default function Login() {
     // admin1
     // 123123z
     const signIn = () => {
+        setLoaderStatus(true)
 
         fetch("http://sofi03.azal.az:8083/api/user/admlogin", {
             method: "POST",
@@ -29,15 +30,17 @@ export default function Login() {
             body: JSON.stringify(adminData)
         }).then((resp) => {
             while (!resp) {
-                console.log('a');
+                // console.log('a');
             }
             resp.json().then((result) => {
-                setLoaderStatus(true)
+                setLoaderStatus(false)
                 if (result.admin_id === adminName) {
                     localStorage.setItem('username', result.admin_id)
                     localStorage.setItem('fullname', `${result.name} ${result.surname}`)
                     navigate('/home/profile')
                 } else {
+                    setLoaderStatus(false)
+
                     alert('Incorrect login or password!')
                 }
 
