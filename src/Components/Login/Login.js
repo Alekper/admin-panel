@@ -29,9 +29,7 @@ export default function Login() {
             },
             body: JSON.stringify(adminData)
         }).then((resp) => {
-            while (!resp) {
-                // console.log('a');
-            }
+             
             resp.json().then((result) => {
                 setLoaderStatus(false)
                 if (result.admin_id === adminName) {
