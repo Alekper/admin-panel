@@ -1,2 +1,166 @@
-@media screen and (max-width: 480px){
+@media screen and (max-width: 600px) {
+    .home-widgets {
+        display: none;
+    }
+
+    .menu-icon:hover {
+        border-right: none;
+    }
+
+    .home-menu {
+
+        border-right: none !important;
+        width: 100%;
+        position: absolute;
+        height: 60%;
+        top: 50%;
+        transform: translateY(-45%);
+        justify-content: space-evenly;
+        background-color: #182c58 !important;
+        transition: 1s;
+        z-index: 998;
+
+    }
+
+    .drop-arrow {
+        display: block;
+    }
+
+    .home-navbar {
+        flex-direction: column-reverse !important;
+        height: auto;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 999;
+    }
+
+    .home-logo {
+        transform: translateX(0);
+
+        position: static;
+        margin-top: 10px;
+    }
+
+    .responsive-menu-item {
+        display: block;
+        color: #fff;
+
+    }
+
+    .menu-icon {
+        display: none;
+    }
+
+    .navbar-profile {
+        margin: 10px 0;
+        width: 100%;
+        justify-content: center !important;
+    }
+
+    .navbar-pp {
+
+        margin: 0;
+    }
+
+    .name-btn {
+        width: auto;
+    }
+
+    .info {
+        margin: 30px 0 10px 0;
+        text-align: left;
+        padding: 30px 50px 30px 90px;
+
+
+    }
+
+    .fullname {
+        font-size: 2rem;
+        margin-left: 0px;
+    }
+
+    #pp-label,
+    .home-profile {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (min-width:601px) and (max-width: 1000px) {
+
+
+    .menu-icon:hover {
+        border-right: none;
+    }
+
+    .home-menu {
+
+        border-right: none !important;
+        margin-left: -20px;
+    }
+
+    .home-widgets {
+        display: none;
+    }
+
+    .menu-icon {
+        margin: 0;
+        padding-left: 0;
+        padding-right: 0;
+        width: auto;
+    }
+
+    .fullname {
+        font-size: 2rem;
+        margin-left: 0px;
+    }
+
+    #pp-label,
+    .home-profile {
+        width: 100px;
+        height: 100px;
+        margin-left: 30px;
+    }
+
+
+}
+
+@media screen and (min-width: 1001px) and (max-width: 1355px) {
+
+
+    .menu-icon:hover {
+        border-right: none;
+    }
+
+    .home-menu {
+
+        border-right: none !important;
+    }
+
+    #logout {
+        width: 100px;
+    }
+
+    .sc-bdVaJa {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .weekday {
+
+        font-size: 1rem;
+    }
+
+    #home-container {
+        width: 100%;
+    }
+
+    .react-calendar {
+        width: 180px !important;
+    }
+
+    .react-calendar__navigation {
+        display: none !important;
+    }
+
 }

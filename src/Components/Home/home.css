@@ -64,6 +64,10 @@
     border-right: 3px solid rgb(52, 52, 255);
 }
 
+.responsive-menu-item{
+    display: none;
+}
+
 .home-menu {
     display: flex;
     flex-direction: column;
@@ -112,7 +116,7 @@
 
 .today {
     font-size: 1rem;
-    margin-top: px;
+    margin-top: 0px;
 }
 
 .side-container {
@@ -364,3 +368,16 @@ cursor: pointer;
     margin-top: 50px;
 
 }
+
+.drop-arrow{
+    background: rgb(191, 211, 241);
+    padding-top: 5px;
+    border: none;
+    color: #182c58;
+    font-weight: bold;
+    font-size:1.5rem;
+    width: 100%;
+    cursor: pointer;
+    display: none;
+}
+

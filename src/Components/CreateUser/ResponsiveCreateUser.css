@@ -1,0 +1,59 @@
+@media screen and (max-width: 1000px) {
+    .user-form {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        justify-content: center;
+
+
+    }
+
+    .user-container {
+        margin-left: 0px;
+        height: auto;
+        padding-bottom: 20px;
+
+
+
+    }
+
+
+    .user-input {
+        align-self: center;
+    }
+
+    .user-form label {
+        align-self: center;
+        text-align: left;
+        width: 270px;
+    }
+
+    #pp-label {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width: 1000px) {
+    .user-container {
+        margin-left: 70px;
+       
+
+
+
+    }
+}
+@media screen and (min-width:1000px) and (max-width: 1210px) {
+    .user-container {
+        margin-left: 0;
+    }
+.user-input{
+    width: 200px;
+    height: 40px;
+}
+.create-btn{
+    min-height: 40px !important;
+    margin-top: 10px;
+    width: 230px;
+}
+}

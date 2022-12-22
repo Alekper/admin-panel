@@ -1,4 +1,5 @@
 import './UserList.css'
+import './UserListResponsive.css'
 import React, { useState } from "react"
 import { useEffect } from "react"
 // import { isContentEditable } from '@testing-library/user-event/dist/utils'
@@ -187,16 +188,7 @@ export default function UserList() {
                         return (
 
                             <div className="user-card" key={i}>
-                                <div className='icons-div'>
-                                    <button className='delete-btn' onClick={() => deleteHandler(item.tabel)}>
-                                        <i className="fa-solid fa-trash"></i>
-
-                                    </button>
-                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setEditHeader(item.name + ' ' + item.surname); setShowUpdateForm(!showUpdateForm) }}>
-                                        <i className="fa-solid fa-pen-to-square"></i>
-
-                                    </button>
-                                </div>
+                                
                                 <img src={`http://sofi03.azal.az:8083/${item.foto.match(regex)}`} className="profile-picture" alt='profile' />
                                 <span className='dot'></span>
                                 <span className='dot'></span>
@@ -209,11 +201,6 @@ export default function UserList() {
                                 <h2 ><i className="fa-solid icon fa-envelope"></i>{item.email}</h2>
                                 <h2 ><i className="fa-solid icon fa-phone"></i>{item.telefon}</h2>
                                 <h2 ><i className="fa-solid icon fa-key"></i>{item.password}</h2>
-                            </div>
-                        )
-                    })) : name.length === 0 ? (userArray.map((item, i) => {
-                        return (
-                            <div className="user-card" key={i}>
                                 <div className='icons-div'>
                                     <button className='delete-btn' onClick={() => deleteHandler(item.tabel)}>
                                         <i className="fa-solid fa-trash"></i>
@@ -224,6 +211,12 @@ export default function UserList() {
 
                                     </button>
                                 </div>
+                            </div>
+                        )
+                    })) : name.length === 0 ? (userArray.map((item, i) => {
+                        return (
+                            <div className="user-card" key={i}>
+                                
                                 <img src={`http://sofi03.azal.az:8083/${item.foto.match(regex)}`} className='profile-picture' alt="profile" />
 
                                 <div className='dot-div'>
@@ -235,6 +228,16 @@ export default function UserList() {
                                 <h2 ><i className="fa-solid icon fa-envelope"></i>{item.email}</h2>
                                 <h2 ><i className="fa-solid icon fa-phone"></i>{item.telefon}</h2>
                                 <h2 ><i className="fa-solid icon fa-key"></i>{item.password}</h2>
+                                <div className='icons-div'>
+                                    <button className='delete-btn' onClick={() => deleteHandler(item.tabel)}>
+                                        <i className="fa-solid fa-trash"></i>
+
+                                    </button>
+                                    <button className='edit-btn' onClick={() => { setUserId(item.tabel); setEditHeader(item.name + ' ' + item.surname); setShowUpdateForm(!showUpdateForm) }}>
+                                        <i className="fa-solid fa-pen-to-square"></i>
+
+                                    </button>
+                                </div>
                             </div>
                         )
                     })) : (<h1>No results found!</h1>)}

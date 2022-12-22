@@ -1,4 +1,5 @@
 import './CreateUser.css'
+import './ResponsiveCreateUser.css'
 import React, { useState } from "react";
 import profilePicture from '../../Assets/img/pp.png'
 import axios from 'axios';
@@ -16,11 +17,13 @@ export default function CreateUser() {
 
     const setProfilePicture = (e) => {
         const len = e.target.files.length;
+        // console.log(e.target.files);
         for (let i = 0; i < len; i++) {
 
             if (e.target.files) {
                 setPhoto(e.target.files[0])
-                console.log(Photo)
+                console.log(e.target.files[0]);
+                // console.log(Photo)
             } else {
                 console.log('error');
             }
@@ -29,8 +32,6 @@ export default function CreateUser() {
     }
 
     const handlePhoto = async () => {
-        // event.preventDefault()
-        console.log('lets go');
         const formData = new FormData();
         formData.append("selectedFile", Photo);
         try {
@@ -49,7 +50,6 @@ export default function CreateUser() {
         let userData = { Tabel, Name, Surname, Foto, Email, Telefon, Password }
         console.log(userData);
 
-        // handlePhoto()
 
         fetch("http://sofi03.azal.az:8083/api/user/createuser", {
             method: "POST",
@@ -72,7 +72,6 @@ export default function CreateUser() {
 
 
         setTimeout(() => {
-            console.log(Tabel);
             handlePhoto()
           
         }, 1000);
@@ -83,7 +82,7 @@ export default function CreateUser() {
 
     return (
         <div className="user-container">
-            <div>
+            <div className='uc-profile-cont'>
                 <div className="profile">
                     <img src={profilePicture} alt="Profile" className='profile-pic' />
 

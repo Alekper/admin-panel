@@ -1,0 +1,44 @@
+@media screen and (max-width: 1000px) {
+    .search-input {
+        width: 80%;
+    }
+
+    .dot {
+        display: none;
+    }
+
+    .user-card {
+        padding: 20px;
+        width: 80%;
+    }
+
+    .profile-picture {
+        position: static;
+    }
+
+    .icons-div {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .delete-btn,
+    .edit-btn {
+        position: static;
+    }
+    .user-card h1,
+.user-card h2 {
+   
+    width: 100%;
+}
+
+}
+
+@media screen and (min-width:600px) and (max-width: 1000px) {
+    .user-card {
+        margin-left: 70px;
+       
+
+
+
+    }
+}
